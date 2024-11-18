@@ -248,7 +248,11 @@ class Provider extends AbstractProvider
         );
 
         if ($this->hasEmptyEmail($payload)) {
-            throw new EmptyEmailException('JWT: User has no email.', 401);
+            $payload = $this->getUserByToken($tokenResponse['access_token']);
+            $email = $payload['email'] ?? null;
+            if (! $email) {
+                throw new EmptyEmailException('JWT: User has no email.', 401);
+            }
         }
 
         $this->user = $this->mapUserToObject((array)$payload);
@@ -346,7 +350,7 @@ class Provider extends AbstractProvider
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->post(
+        $response = $this->getHttpClient()->get(
             $this->getUserInfoUrl() . '?' . http_build_query([
                 'access_token' => $token,
             ]),
@@ -359,4 +363,5 @@ class Provider extends AbstractProvider
 
         return json_decode((string)$response->getBody(), true);
     }
+
 }
