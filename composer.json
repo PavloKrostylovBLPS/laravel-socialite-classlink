@@ -1,16 +1,20 @@
 {
-  "name": "kovah/laravel-socialite-oidc",
-  "description": "OpenID Connect OAuth2 Provider for Laravel Socialite",
+  "name": "pavlokrostylovblps/laravel-socialite-classlink",
+  "description": "ClassLink OpenID Connect (OIDC) Provider for Laravel Socialite",
   "keywords": [
     "laravel",
     "oauth",
     "provider",
     "socialite",
-    "oidc"
+    "oidc",
+    "classlink"
   ],
-  "homepage": "https://github.com/kovah/laravel-socialite-oidc",
+  "homepage": "https://github.com/PavloKrostylovBLPS/laravel-socialite-classlink",
   "license": "MIT",
   "authors": [
+    {
+      "name": "Pavlo Krostylov"
+    },
     {
       "name": "JPG Dev",
       "homepage": "https://jpgdev.com"
@@ -31,17 +35,8 @@
   },
   "autoload": {
     "psr-4": {
-      "SocialiteProviders\\OIDC\\": "src"
+      "SocialiteProviders\\ClassLink\\": "src"
     }
   },
-  "conflict": {
-    "jp-gauthier/socialiteproviders-oidc": "*"
-  },
-  "minimum-stability": "stable",
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/kovah"
-    }
-  ]
+  "minimum-stability": "stable"
 }

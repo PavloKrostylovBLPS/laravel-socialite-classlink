@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialiteProviders\OIDC;
+namespace SocialiteProviders\ClassLink;
 
 use InvalidArgumentException;
 

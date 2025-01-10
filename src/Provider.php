@@ -1,6 +1,6 @@
 <?php
 
-namespace SocialiteProviders\OIDC;
+namespace SocialiteProviders\ClassLink;
 
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
@@ -21,7 +21,7 @@ class Provider extends AbstractProvider
     /**
      * Unique Provider Identifier.
      */
-    public const IDENTIFIER = 'OIDC';
+    public const IDENTIFIER = 'ClassLink';
 
     public $configurations = null;
 
@@ -61,7 +61,6 @@ class Provider extends AbstractProvider
     public static function additionalConfigKeys()
     {
         return [
-            'base_url',
             'scopes',
         ];
     }
@@ -212,7 +211,7 @@ class Provider extends AbstractProvider
     {
         if ($this->configurations === null) {
             try {
-                $configUrl = rtrim($this->getConfig('base_url'), '/') . '/.well-known/openid-configuration';
+                $configUrl = 'https://launchpad.classlink.com/.well-known/openid-configuration';
 
                 $response = $this->getHttpClient()->get($configUrl);
 

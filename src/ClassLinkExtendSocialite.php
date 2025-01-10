@@ -1,10 +1,10 @@
 <?php
 
-namespace SocialiteProviders\OIDC;
+namespace SocialiteProviders\ClassLink;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
-class OIDCExtendSocialite
+class ClassLinkExtendSocialite
 {
     /**
      * Register the provider.
@@ -13,6 +13,6 @@ class OIDCExtendSocialite
      */
     public function handle(SocialiteWasCalled $socialiteWasCalled): void
     {
-        $socialiteWasCalled->extendSocialite('oidc', Provider::class);
+        $socialiteWasCalled->extendSocialite('classlink', Provider::class);
     }
 }
