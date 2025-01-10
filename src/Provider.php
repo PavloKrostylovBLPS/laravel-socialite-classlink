@@ -53,7 +53,19 @@ class Provider extends AbstractProvider
      *
      * @var bool
      */
-    protected bool $usesNonce = true;
+    protected bool $usesNonce = false;
+
+    /**
+     * Enables nonce for the provider.
+     *
+     * @return $this
+     */
+    public function enableNonce()
+    {
+        $this->usesNonce = true;
+
+        return $this;
+    }
 
     /**
      * {@inheritdoc}
@@ -256,9 +268,13 @@ class Provider extends AbstractProvider
 
         $this->user = $this->mapUserToObject((array)$payload);
 
-        return $this->user->setToken($tokenResponse['access_token'])
-            ->setRefreshToken($tokenResponse['refresh_token'] ?? null)
-            ->setExpiresIn($tokenResponse['expires_in']);
+        $this->user->setToken($tokenResponse['access_token']);
+        if(isset($tokenResponse['refresh_token'])) {
+            $this->user->setRefreshToken($tokenResponse['refresh_token'])
+                ->setExpiresIn($tokenResponse['expires_in']);
+        }
+
+        return $this->user;
     }
 
     protected function decodeJWT($jwt, $code)
